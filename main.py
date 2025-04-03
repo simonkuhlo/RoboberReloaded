@@ -13,7 +13,8 @@ class MyBot(commands.Bot):
         super().__init__(command_prefix="!", intents=intents)
 
     async def setup_hook(self):
-        await self.load_extension("access_modal")  # Assuming this code is saved as button_cog.py
+        await self.load_extension("access_modal")
+        await self.load_extension("event_manager")
         await self.tree.sync()
 
     async def on_ready(self):
