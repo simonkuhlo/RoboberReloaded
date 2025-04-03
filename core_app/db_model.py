@@ -13,6 +13,11 @@ class EventDiscordWrapper():
         self.participant_role:discord.Role = participant_role
         self.administrator_role:discord.Role = administrator_role
 
+class EventDiscordWrapperUpdate():
+    def __init__(self, old:EventDiscordWrapper, new:EventDiscordWrapper):
+        self.old = old
+        self.new = new
+
 class GuildDB():
     def __init__(self, guild:discord.Guild):
         self.guild:discord.Guild = guild
@@ -66,12 +71,12 @@ class GuildDB():
         )
 
     @orm.db_session
-    def change_event(self, event:EventDiscordWrapper):
-        db_object = self.EventDBWrapper[event.db_id]
-        db_object.name = event.name
-        db_object.category_id = event.category.id
-        db_object.participant_role_id = event.participant_role.id
-        db_object.administrator_role_id = event.administrator_role.id
+    def change_event(self, updated_event:EventDiscordWrapperUpdate):
+        db_object = self.EventDBWrapper[updated_event.old.db_id]
+        db_object.name = updated_event.new.name
+        db_object.category_id = updated_event.new.category.id
+        db_object.participant_role_id = updated_event.new.participant_role.id
+        db_object.administrator_role_id = updated_event.new.administrator_role.id
 
     @orm.db_session
     def delete_event(self, event:EventDiscordWrapper):

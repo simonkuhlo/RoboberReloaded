@@ -1,3 +1,4 @@
+import copy
 import discord
 import event_manager_discord_helper
 from core_app import db_model as db
@@ -29,8 +30,8 @@ class EventEditView(discord.ui.View):
     def __init__(self, event:db.EventDiscordWrapper):
         super().__init__(timeout=600)
         # addd buttons
+        self.add_item(RenameEventButton(event))
         self.add_item(DeleteEventButton(event))
-
 
 
 class EventSelector(discord.ui.Select):
@@ -66,7 +67,20 @@ class DeleteEventButton(discord.ui.Button):
 
     async def callback(self, interaction:discord.Interaction):
         await event_manager_discord_helper.delete_event(guild=interaction.guild, event=self.event)
-        await interaction.response.send_message(f"Event {self.event.name} deleted.")
+        await interaction.response.send_message(f"Event {self.event.name} deleted.", ephemeral=True)
 
+class RenameEventButton(discord.ui.Button):
+    def __init__(self, event:db.EventDiscordWrapper):
+        super().__init__()
+        self.label = "Delete Event"
+        self.style = discord.ButtonStyle.red
+        self.event:db.EventDiscordWrapper = event
+
+    async def callback(self, interaction:discord.Interaction):
+        new_event = copy.copy(self.event)
+        new_event.name = "Daniels 2ter Geburtstag"
+        updated_event = db.EventDiscordWrapperUpdate(self.event, new_event)
+        await event_manager_discord_helper.edit_event()
+        await interaction.response.send_message(f"Event {self.event.name} updated.", ephemeral=True)
 
 
