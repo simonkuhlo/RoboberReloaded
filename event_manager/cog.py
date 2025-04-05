@@ -1,5 +1,5 @@
-import event_manager_discord_helper as backend
-import event_manager_edit_view
+from . import event_manager_discord_helper as backend
+from . import event_manager_edit_view
 from discord.ext import commands
 from core_app import db_model as db
 

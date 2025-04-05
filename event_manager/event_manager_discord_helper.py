@@ -37,9 +37,9 @@ async def create_event(guild:discord.Guild, event:db.EventDiscordWrapper):
 
 async def edit_event(guild:discord.Guild, updated_event:db.EventDiscordWrapperUpdate):
     if updated_event.old.name != updated_event.new.name:
-        updated_event.new.category.edit(name=updated_event.new.name)
-        updated_event.new.participant_role.edit(name=f"{updated_event.new.name}-Teilnehmer")
-        updated_event.new.administrator_role.edit(name=f"{updated_event.new.name}-Administrator")
+        await updated_event.new.category.edit(name=updated_event.new.name)
+        await updated_event.new.participant_role.edit(name=f"{updated_event.new.name}-Teilnehmer")
+        await updated_event.new.administrator_role.edit(name=f"{updated_event.new.name}-Administrator")
     db.get_db_instance(guild).change_event(updated_event=updated_event)
 
 async def delete_event(guild:discord.Guild, event:db.EventDiscordWrapper):                                                     

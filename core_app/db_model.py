@@ -74,9 +74,9 @@ class GuildDB():
     def change_event(self, updated_event:EventDiscordWrapperUpdate):
         db_object = self.EventDBWrapper[updated_event.old.db_id]
         db_object.name = updated_event.new.name
-        db_object.category_id = updated_event.new.category.id
-        db_object.participant_role_id = updated_event.new.participant_role.id
-        db_object.administrator_role_id = updated_event.new.administrator_role.id
+        db_object.category_id = str(updated_event.new.category.id)
+        db_object.participant_role_id = str(updated_event.new.participant_role.id)
+        db_object.administrator_role_id = str(updated_event.new.administrator_role.id)
 
     @orm.db_session
     def delete_event(self, event:EventDiscordWrapper):
