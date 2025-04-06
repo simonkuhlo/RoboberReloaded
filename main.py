@@ -14,8 +14,8 @@ class MyBot(commands.Bot):
 
     async def setup_hook(self):
         await self.load_extension("access_modal")
-        await self.load_extension("event_manager.cog")
-        await self.tree.sync()
+        await self.load_extension("modules.event_manager")
+        #await self.tree.sync()
 
     async def on_ready(self):
         print(f"Logged in as {self.user} (ID: {self.user.id})")
