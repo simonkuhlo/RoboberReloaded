@@ -8,7 +8,7 @@ async def get_editable_events(guild:discord.Guild, member:discord.Member) -> lis
     print(all_events)
     editable_events = []
     for event in all_events:
-        if event.administrator_role in member.roles or 1 == 1:
+        if event.administrator_role in member.roles:
             select_option = discord.SelectOption(label=event.name, value=str(event.id))
             editable_events.append(select_option)
     return editable_events
