@@ -1,5 +1,5 @@
 from discord.ext import commands
-from .ui.views import event_manager as event_manager_ui
+from .ui.views import edit_menu as event_manager_ui
 from . import ref
 from . import api
 
