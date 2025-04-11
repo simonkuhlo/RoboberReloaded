@@ -1,5 +1,5 @@
 import discord
-from ..items import edit_start
+from ..components import edit_start
 
 
 class View(discord.ui.View):
