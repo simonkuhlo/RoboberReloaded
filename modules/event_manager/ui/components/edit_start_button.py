@@ -4,7 +4,7 @@ from ...ref import event
 
 class Button(discord.ui.Button):
     def __init__(self):
-        super().__init__()
+        super().__init__(custom_id="EditEventStart")
         self.label = "Edit Event"
         self.style = discord.ButtonStyle.blurple
         self.event = event

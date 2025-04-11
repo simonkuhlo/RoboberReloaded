@@ -5,7 +5,6 @@ from ...ref import event as event_ref
 
 async def get_editable_events(guild:discord.Guild, member:discord.Member) -> list[event_ref.Event]:
     all_events = await event_ref.all_from_guild(guild.id)
-    print(all_events)
     editable_events = []
     for event in all_events:
         if event.administrator_role in member.roles:
