@@ -1,6 +1,14 @@
 import discord
-from ..components import edit_event_selector
+from ..components import edit_event_selector, edit_start_button
 from ...ref import event as event_ref
+
+
+
+class View(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=600)
+        # addd buttons
+        self.add_item(edit_start_button.Button())
 
 
 async def get_editable_events(guild:discord.Guild, member:discord.Member) -> list[event_ref.Event]:
