@@ -1,5 +1,5 @@
 import discord
-from ..views import select_event
+from ..views.edit import select_event
 from ...ref import event
 
 class Button(discord.ui.Button):

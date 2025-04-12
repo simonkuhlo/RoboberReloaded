@@ -1,5 +1,5 @@
 import discord
-from ..views import edit_event
+from ..views.edit import edit_menu
 from ...ref import event as event_ref
 
 
@@ -10,4 +10,4 @@ class Select(discord.ui.Select):
 
     async def callback(self, interaction:discord.Interaction):
         event = await event_ref.from_db_with_id(self.values[0])
-        await interaction.response.edit_message(content=f"You selected {event.name}", view=edit_event.View(event))
+        await interaction.response.edit_message(content=f"You selected {event.name}", view=edit_menu.View(event))
