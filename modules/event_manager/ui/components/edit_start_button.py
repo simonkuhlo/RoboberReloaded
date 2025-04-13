@@ -1,5 +1,5 @@
 import discord
-from ..views.edit import select_event
+from ..views.edit import edit_menu_select
 from ...ref import event
 
 class Button(discord.ui.Button):
@@ -10,8 +10,8 @@ class Button(discord.ui.Button):
         self.event = event
 
     async def callback(self, interaction:discord.Interaction):
-        options = await select_event.get_editable_events(interaction.guild, interaction.user)
+        options = await edit_menu_select.get_editable_events(interaction.guild, interaction.user)
         if options:
-            await interaction.response.send_message(f"Select the event you want to edit:", ephemeral=True, view = select_event.View(options))
+            await interaction.response.send_message(f"Select the event you want to edit:", ephemeral=True, view = edit_menu_select.View(options))
         else:
             await interaction.response.send_message("No editable events found for this user.", ephemeral=True)

@@ -1,5 +1,6 @@
 from discord.ext import commands
 from .ui.views.edit import start as event_manager_ui
+from .ui.views import event_participant_select as event_selector_ui
 from . import ref
 from . import api
 
@@ -20,6 +21,12 @@ class EventManagerCog(commands.Cog):
     @commands.is_owner()
     async def create_event_control_button(self, ctx:commands.Context):
         await ctx.send("", view=event_manager_ui.View())
+    
+    @commands.hybrid_command(name="event_participant_select_button", description="???")
+    @commands.is_owner()
+    async def create_event_control_button(self, ctx:commands.Context):
+        options = await event_selector_ui.get_selectable_events(ctx.guild, ctx.author)
+        await ctx.send("", view=event_selector_ui.View(options))
 
 
 async def setup(bot:commands.Bot):
