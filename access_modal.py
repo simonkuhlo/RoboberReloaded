@@ -37,9 +37,9 @@ class SelectCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.hybrid_command(name="kiss", description="Eventroles multi-select")
+    @commands.hybrid_command(name="test", description="Eventroles multi-select")
     @commands.is_owner()
-    async def fruits(self, ctx):
+    async def haha(self, ctx):
         view = MultiSelectView()
         await ctx.send("----------\n:point_up: Wähle die Events aus, an denen du interessiert bist:\n----------", view=view)
 

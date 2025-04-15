@@ -24,7 +24,7 @@ class EventManagerCog(commands.Cog):
     
     @commands.hybrid_command(name="event_participant_select_button", description="???")
     @commands.is_owner()
-    async def create_event_control_button(self, ctx:commands.Context):
+    async def create_event_participant_select_button(self, ctx:commands.Context):
         options = await event_selector_ui.get_selectable_events(ctx.guild, ctx.author)
         await ctx.send("", view=event_selector_ui.View(options))
 
